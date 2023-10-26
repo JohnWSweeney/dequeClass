@@ -8,6 +8,29 @@ node* deque::init(int data)
 	return newNode;
 }
 
+int deque::front(node* list, int &data)
+{
+	if (list == nullptr) return 1; // list is empty.
+	data = list->data;
+	return 0;
+}
+
+int deque::back(node* list, int &data)
+{
+	if (list == nullptr) return 1; // list is empty.
+	// find tail.
+	do
+	{
+		if (list->next == nullptr)
+		{
+			data = list->data;
+			return 0;
+		}
+		list = list->next;
+	} while (list != nullptr);
+	return 0;
+}
+
 int deque::push_front(node** list, int data)
 {
 	if (*list == nullptr)
@@ -91,6 +114,28 @@ int deque::clear(node** list)
 		delete dummy;
 	} while (*list != nullptr);
 	return 0;
+}
+
+int deque::size(node* list, int &nodeCount)
+{
+	if (list == nullptr) // list is empty.
+	{
+		nodeCount = 0;
+		return 1;
+	}
+
+	nodeCount = 0;
+	do {
+		++nodeCount;
+		list = list->next;
+	} while (list != nullptr);
+	return 0;
+}
+
+int deque::isEmpty(node* list)
+{
+	if (list == nullptr) return 1; // list is empty.
+	else return 0; // list is not empty.
 }
 
 int deque::print(node* list)
