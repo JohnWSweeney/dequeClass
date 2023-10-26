@@ -1,44 +1,40 @@
 #include "deque.h"
 
-dNode* deque::init(int data)
+node* deque::init(int data)
 {
-	dNode* newNode = new dNode();
+	node* newNode = new node();
 	newNode->data = data;
-	newNode->prev = nullptr;
 	newNode->next = nullptr;
 	return newNode;
 }
 
-int deque::push_front(dNode** list, int data)
+int deque::push_front(node** list, int data)
 {
 	if (*list == nullptr)
 	{
 		*list = this->init(data);
 		return 0;
 	}
-	dNode* head = *list;
-	dNode* newNode = new dNode();
+	node* head = *list;
+	node* newNode = new node();
 	newNode->data = data;
-	newNode->prev = nullptr;
 	newNode->next = head;
-	head->prev = newNode;
 	*list = newNode;
 	return 0;
 }
 
-int deque::pop_front(dNode** list)
+int deque::pop_front(node** list)
 {
 	if (*list == nullptr) return 1; // list is empty.
 	// 
-	dNode* head = *list;
-	dNode* newHead = head->next;
-	newHead->prev = nullptr;
+	node* head = *list;
+	node* newHead = head->next;
 	delete head;
 	*list = newHead;
 	return 0;
 }
 
-int deque::push_back(dNode** list, int data)
+int deque::push_back(node** list, int data)
 {
 	// check if list is empty.
 	if (*list == nullptr)
@@ -47,16 +43,15 @@ int deque::push_back(dNode** list, int data)
 		return 0;
 	}
 
-	dNode* head = *list;
+	node* head = *list;
 	// find tail node, append new node.
 	do {
-		dNode* curr = *list;
+		node* curr = *list;
 		if (curr->next == nullptr)
 		{
-			dNode* newNode = new dNode();
+			node* newNode = new node();
 			newNode->data = data;
 			curr->next = newNode;
-			newNode->prev = curr;
 			newNode->next = nullptr;
 			*list = head;
 			return 0;
@@ -65,17 +60,17 @@ int deque::push_back(dNode** list, int data)
 	} while (*list != nullptr);
 }
 
-int deque::pop_back(dNode** list)
+int deque::pop_back(node** list)
 {
 	if (*list == nullptr) return 1; // list is empty.
 
-	dNode* head = *list;
+	node* head = *list;
 	// find, remove tail node.
 	do {
-		dNode* curr = *list;
+		node* curr = *list;
 		if (curr->next->next == nullptr)
 		{
-			dNode* dummy = curr->next;
+			node* dummy = curr->next;
 			curr->next = nullptr;
 			delete dummy;
 			*list = head;
@@ -85,27 +80,27 @@ int deque::pop_back(dNode** list)
 	} while (*list != nullptr);
 }
 
-int deque::clear(dNode** list)
+int deque::clear(node** list)
 {
 	if (*list == nullptr) return 1; // list is empty.
 
 	do {
-		dNode* curr = *list;
-		dNode* dummy = curr;
+		node* curr = *list;
+		node* dummy = curr;
 		*list = curr->next;
 		delete dummy;
 	} while (*list != nullptr);
 	return 0;
 }
 
-int deque::print(dNode* list)
+int deque::print(node* list)
 {
 	if (list == nullptr) return 1; // list is empty.
 
 	int tempPos = 0;
-	std::cout << "#\tdata:\tcurr:\t\t\tnext:\t\t\tprev:\n";
+	std::cout << "#\tdata:\tcurr:\t\t\tnext:\n";
 	do {
-		std::cout << tempPos << '\t' << list->data << '\t' << list << '\t' << list->next << '\t' << list->prev << '\n';
+		std::cout << tempPos << '\t' << list->data << '\t' << list << '\t' << list->next << '\n';
 		++tempPos;
 		list = list->next;
 	} while (list != nullptr);

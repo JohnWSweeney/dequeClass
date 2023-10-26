@@ -3,9 +3,9 @@
 
 int main()
 {
-	std::cout << "Deque Class v1.0.0\n\n";
+	std::cout << "Deque Class v1.1.0\n\n";
 
-	dNode* list = nullptr;
+	node* list = nullptr;
 	int result;
 	deque dq;
 

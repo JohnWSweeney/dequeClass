@@ -1,22 +1,21 @@
 #pragma once
 #include <iostream>
-// doubly linked list node.
-struct dNode
+// singly linked list node.
+struct node
 {
 	int data;
-	dNode* prev;
-	dNode* next;
+	node* next;
 };
 
 class deque
 {
 private:
-	dNode* init(int data);
+	node* init(int data);
 public:
-	int push_front(dNode** list, int data);
-	int pop_front(dNode** list);
-	int push_back(dNode** list, int data);
-	int pop_back(dNode** list);
-	int clear(dNode** list);
-	int print(dNode* list);
+	int push_front(node** list, int data);
+	int pop_front(node** list);
+	int push_back(node** list, int data);
+	int pop_back(node** list);
+	int clear(node** list);
+	int print(node* list);
 };
