@@ -1,9 +1,9 @@
 #include <iostream>
 #include "deque.h"
-
+// sweeney's hand-rolled deque class.
 int main()
 {
-	std::cout << "Deque Class v1.1.1\n\n";
+	std::cout << "Deque Class v1.1.2\n\n";
 
 	node* list = nullptr;
 	int result;
@@ -11,7 +11,7 @@ int main()
 	int nodeCount;
 	deque dq;
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		dq.push_back(&list, pow(i, 5));
 	}

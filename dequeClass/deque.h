@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+// sweeney's hand-rolled deque class.
+
 // singly linked list node.
 struct node
 {

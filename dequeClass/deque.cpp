@@ -1,4 +1,5 @@
 #include "deque.h"
+// sweeney's hand-rolled deque class.
 
 node* deque::init(int data)
 {
@@ -88,14 +89,20 @@ int deque::pop_back(node** list)
 	if (*list == nullptr) return 1; // list is empty.
 
 	node* head = *list;
-	// find, remove tail node.
+	// first check if list has only one node.
+	if (head->next == nullptr)
+	{
+		delete head;
+		*list = nullptr;
+		return 0;
+	}
+	// else, find and remove tail node.
 	do {
 		node* curr = *list;
 		if (curr->next->next == nullptr)
 		{
-			node* dummy = curr->next;
+			delete curr->next;
 			curr->next = nullptr;
-			delete dummy;
 			*list = head;
 			return 0;
 		}
